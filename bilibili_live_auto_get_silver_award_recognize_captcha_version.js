@@ -506,12 +506,12 @@ function calculateCaptcha(captcha) {
 }
 
 function inputCaptcha(captcha) {
-	var captchaInputTextField = document.querySelector("#freeSilverCaptchaInput");
+	var captchaInputTextField = document.querySelector(".live-input");
 	captchaInputTextField.value = captcha;
 }
 
 function clickGetFreeSilverAwardBtn() {
-	var getFreeSilverAwardBtn = document.querySelector("#getFreeSilverAward");
+	var getFreeSilverAwardBtn = document.querySelector(".get-award-btn");
 	getFreeSilverAwardBtn.click();
 }
 
