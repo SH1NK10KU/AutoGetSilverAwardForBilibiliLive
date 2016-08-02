@@ -7,7 +7,7 @@
  *     不是每次都成功哦，不过会定时重试-。-|||
  *
  * @author 記憶の中で未来の風
- * @version 0.0.1
+ * @version 0.0.2
  * @date 2016.3.9
  *
  */
@@ -399,7 +399,7 @@ var minus = new Array(
 var captchaBinarySignature = new Array(number0, number1, number2, number3, number4, number5, number6, number7, number8, number9, plus, minus);
 
 function canGetFreeSilverAward() {
-	var timer = document.querySelector(".treasure-count-down");
+	var timer = document.querySelector(".count-down-node");
 	if ("00:00" == timer.innerText) {
 		return true;
 	}
