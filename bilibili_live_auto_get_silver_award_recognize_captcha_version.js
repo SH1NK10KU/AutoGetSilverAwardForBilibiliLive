@@ -5,10 +5,11 @@
  *
  * 1. 修正因为页面元素变动而失效的bug。
  * 2. 针对个别数字加强识别，提高准确度。
+ * 3. 增加宝箱失效时自动停止脚本运行。
  *
  * @author 記憶の中で未来の風
- * @version 0.0.3
- * @date 2016.8.5
+ * @version 0.0.4
+ * @date 2016.10.13
  *
  */
 
@@ -524,7 +525,7 @@ function getCaptchaImg() {
 	img.onload = function() {
 	    content.drawImage(img, 0, 0);
 	    var data = content.getImageData(0, 0, img.width, img.height).data;//读取整张图片的像素。
-	    console.log(data, data.toString());
+	    // console.log(data, data.toString());
 	}
 	img.src = "http://live.bilibili.com/FreeSilver/getCaptcha?t=" + Math.random();
 }
@@ -556,7 +557,7 @@ function logCaptchaImgBinary(binary) {
 		}
 		formalizedBinaryLog += binary[index];
 	}
-	console.log(formalizedBinaryLog);
+	// console.log(formalizedBinaryLog);
 	return formalizedBinaryLog;
 }
 
@@ -620,6 +621,16 @@ function clickCloseBtn() {
 	}
 }
 
+function noMoreSilverAward() {
+	if (document.querySelector("span.toast-text") != null) {
+		var toastInnerText = document.querySelector("span.toast-text").innerText;
+		if (toastInnerText.indexOf('这个宝箱过期了！是不是在哪里开了一个新的') != -1) {
+			return true;
+		}
+	}
+	return false;
+}
+
 function getFreeSilverAward() {
 	if (canGetFreeSilverAward()) {
 		clickFreeSilverAwardBox();
@@ -640,7 +651,12 @@ function getFreeSilverAward() {
 }
 
 function autoGetFreeSilverAward() {
-	window.setInterval(function() {getFreeSilverAward();}, 30000);
+	var timer = window.setInterval(function() {getFreeSilverAward();}, 30000);
+	var clearTimer = window.setInterval(function () {
+		if (noMoreSilverAward()) {
+			clearInterval(timer);
+		}
+	}, 100);
 }
 
 // var auto;
