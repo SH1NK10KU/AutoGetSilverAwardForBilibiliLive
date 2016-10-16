@@ -6,10 +6,11 @@
  * 1. 修正因为页面元素变动而失效的bug。
  * 2. 针对个别数字加强识别，提高准确度。
  * 3. 增加宝箱失效时自动停止脚本运行。
+ * 4. 针对宝箱验证码实效进行定时器的微调。
  *
  * @author 記憶の中で未来の風
- * @version 0.0.4
- * @date 2016.10.13
+ * @version 0.0.5
+ * @date 2016.10.16
  *
  */
 
@@ -527,7 +528,7 @@ function getCaptchaImg() {
 	    var data = content.getImageData(0, 0, img.width, img.height).data;//读取整张图片的像素。
 	    // console.log(data, data.toString());
 	}
-	img.src = "http://live.bilibili.com/FreeSilver/getCaptcha?t=" + Math.random();
+	img.src = "http://live.bilibili.com/FreeSilver/getCaptcha?ts=" + new Date().getTime();
 }
 
 function removeCaptchaImg() {
@@ -635,6 +636,7 @@ function getFreeSilverAward() {
 	if (canGetFreeSilverAward()) {
 		clickFreeSilverAwardBox();
 		getCaptchaImg();
+		// console.log(new Date(parseInt(new Date().getTime())).toLocaleString().replace(/:\d{1,2}$/,' '));
 		setTimeout(function () {
 			var binary = binarizeCaptchaImg();
 			var formalizedBinary = logCaptchaImgBinary(binary).replace(/\n/g, "");
@@ -642,16 +644,18 @@ function getFreeSilverAward() {
 			var result = calculateCaptcha(captcha);
 			console.log("Captcha:"+captcha);
 			console.log("Captcha Result:" + result);
+			// console.log(new Date(parseInt(new Date().getTime())).toLocaleString().replace(/:\d{1,2}$/,' '));
 			removeCaptchaImg();
 			inputCaptcha(result);
 			clickGetFreeSilverAwardBtn();
 			// clickCloseBtn();
-		}, 10000);
+		}, 5000);
 	}	
 }
 
+var timer;
 function autoGetFreeSilverAward() {
-	var timer = window.setInterval(function() {getFreeSilverAward();}, 30000);
+	timer = window.setInterval(function() {getFreeSilverAward();}, 10000);
 	var clearTimer = window.setInterval(function () {
 		if (noMoreSilverAward()) {
 			clearInterval(timer);
@@ -659,6 +663,5 @@ function autoGetFreeSilverAward() {
 	}, 100);
 }
 
-// var auto;
-auto = autoGetFreeSilverAward();
+var auto = autoGetFreeSilverAward();
 // getFreeSilverAward();
