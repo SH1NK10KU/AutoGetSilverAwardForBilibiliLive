@@ -649,13 +649,13 @@ function getFreeSilverAward() {
 			inputCaptcha(result);
 			clickGetFreeSilverAwardBtn();
 			// clickCloseBtn();
-		}, 5000);
+		}, 3000);
 	}	
 }
 
 var timer;
 function autoGetFreeSilverAward() {
-	timer = window.setInterval(function() {getFreeSilverAward();}, 10000);
+	timer = window.setInterval(function() {getFreeSilverAward();}, 5000);
 	var clearTimer = window.setInterval(function () {
 		if (noMoreSilverAward()) {
 			clearInterval(timer);
