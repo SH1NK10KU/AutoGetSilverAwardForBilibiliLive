@@ -17,7 +17,7 @@ var captchaWidth = 0;
 var captchaHeight = 0;
 
 var number0 = new Array(
-	"1000000000000001",
+    "1000000000000001",
     "0000000000000000",
     "0000000000000000",
     "0000000000000000",
@@ -49,7 +49,7 @@ var number0 = new Array(
     "0000000000000000",
     "1000000000000001");
 var number1 = new Array(
-	"1110000",
+    "1110000",
     "1100000",
     "1100000",
     "1100000",
@@ -81,7 +81,7 @@ var number1 = new Array(
     "1100000",
     "1100000");
 var number2 = new Array(
-	"1000000000000001",
+    "1000000000000001",
     "0000000000000000",
     "0000000000000000",
     "0000000000000000",
@@ -113,7 +113,7 @@ var number2 = new Array(
     "0000000000000000",
     "0000000000000000");
 var number3 = new Array(
-	"1000000000000001",
+    "1000000000000001",
     "0000000000000000",
     "0000000000000000",
     "0000000000000000",
@@ -145,7 +145,7 @@ var number3 = new Array(
     "0000000000000000",
     "1000000000000001");
 var number4 = new Array(
-	"11111111000011111",
+    "11111111000011111",
     "11111110000011111",
     "11111110000011111",
     "11111100000111111",
@@ -177,7 +177,7 @@ var number4 = new Array(
     "11111111110000011",
     "11111111110000011");
 var number5 = new Array(
-	"0000000000000000",
+    "0000000000000000",
     "0000000000000000",
     "0000000000000000",
     "0000000000000000",
@@ -209,7 +209,7 @@ var number5 = new Array(
     "0000000000000000",
     "1000000000000001");
 var number6 = new Array(
-	"1000000000000001",
+    "1000000000000001",
     "0000000000000000",
     "0000000000000000",
     "0000000000000000",
@@ -241,7 +241,7 @@ var number6 = new Array(
     "0000000000000000",
     "1000000000000001");
 var number7 = new Array(
-	"0000000000000000",
+    "0000000000000000",
     "0000000000000000",
     "0000000000000000",
     "0000000000000000",
@@ -273,7 +273,7 @@ var number7 = new Array(
     "1111000001111111",
     "1111000001111111");
 var number8 = new Array(
-	"1000000000000001",
+    "1000000000000001",
     "0000000000000000",
     "0000000000000000",
     "0000000000000000",
@@ -305,7 +305,7 @@ var number8 = new Array(
     "0000000000000000",
     "1000000000000001");
 var number9 = new Array(
-	"1000000000000001",
+    "1000000000000001",
     "0000000000000000",
     "0000000000000000",
     "0000000000000000",
@@ -337,7 +337,7 @@ var number9 = new Array(
     "0000000000000000",
     "1000000000000001");
 var plus = new Array(
-	"11111111111111111",
+    "11111111111111111",
     "11111111111111111",
     "11111111111111111",
     "11111111111111111",
@@ -369,7 +369,7 @@ var plus = new Array(
     "11111111111111111",
     "11111111111111111");
 var minus = new Array(
-	"111111111",
+    "111111111",
     "111111111",
     "111111111",
     "111111111",
@@ -407,11 +407,11 @@ Array.prototype.contains = function(item){
 };
 
 function canGetFreeSilverAward() {
-	var timer = document.querySelector(".count-down");
-	if ("00:00" == timer.innerText) {
-		return true;
-	}
-	return false;
+    var timer = document.querySelector(".count-down");
+    if ("00:00" == timer.innerText) {
+        return true;
+    }
+    return false;
 }
 
 function clickFreeSilverAwardBox() {
@@ -430,7 +430,7 @@ function clickGetFreeSilverAwardBtn() {
 
 function clickRefreshCaptchaBtn() {
     var refreshCaptchaBtn = document.querySelector(".refresh-captcha");
-	if (refreshCaptchaBtn !== null) {
+    if (refreshCaptchaBtn !== null) {
         refreshCaptchaBtn.click();
     }
 }
@@ -462,8 +462,8 @@ function getNewCaptchaImageData() {
     if (createCanvas()) {
         var content = createCanvas().getContext('2d');     
         var time = new Date().getTime();    
-		var img = new Image();
-		
+        var img = new Image();
+        
         img.src = "http://live.bilibili.com/FreeSilver/getCaptcha?ts=" + time;
         img.onload = function() {
             captchaWidth = img.width;
@@ -475,22 +475,22 @@ function getNewCaptchaImageData() {
 }
 
 function binarizeCaptchaImageAsString() {
-	var captchaImgBinaryString = "";
+    var captchaImgBinaryString = "";
 
-	for (var rPixel = 0, length = captchaData.length; rPixel < length; rPixel += 4) {
-	   	if ((captchaData[rPixel] + captchaData[rPixel+1] + captchaData[rPixel+2])/3 < 127) {
+    for (var rPixel = 0, length = captchaData.length; rPixel < length; rPixel += 4) {
+           if ((captchaData[rPixel] + captchaData[rPixel+1] + captchaData[rPixel+2])/3 < 127) {
             captchaImgBinaryString += "0";
-	   	} else {
+           } else {
             captchaImgBinaryString += "1";
         }
     }
     
-	return captchaImgBinaryString;
+    return captchaImgBinaryString;
 }
 
 function dilateBinaryCaptcha(captchaString) {
-	var dilatedCaptcha = "";
-	
+    var dilatedCaptcha = "";
+    
     for (var index = captchaWidth + 1; index < captchaString.length - captchaWidth - 1; ) {
         if (index % captchaWidth === 0) {
             index += 2;
@@ -504,115 +504,115 @@ function dilateBinaryCaptcha(captchaString) {
 }
 
 function logBinaryCaptcha(binary) {
-	var formalizedBinaryLog = "";
+    var formalizedBinaryLog = "";
 
-	for (var index = 0, length = binary.length; index < length; index++) {
-		if (index % captchaWidth === 0) {
-			formalizedBinaryLog += "\n";
-		}
-		formalizedBinaryLog += binary[index];
-	}
+    for (var index = 0, length = binary.length; index < length; index++) {
+        if (index % captchaWidth === 0) {
+            formalizedBinaryLog += "\n";
+        }
+        formalizedBinaryLog += binary[index];
+    }
 
-	return formalizedBinaryLog;
+    return formalizedBinaryLog;
 }
 
 function recognizeCaptcha(binary) {
-	var captcha = "";
+    var captcha = "";
 
-	for (var index = captchaWidth * 4; index < captchaWidth * 5 - 1; index++) {
-		for (var indexOfCaptchaBinarySignature = captchaBinarySignature.length; indexOfCaptchaBinarySignature > 0; indexOfCaptchaBinarySignature--) {
-			for (var line = 0; line < captchaBinarySignature[indexOfCaptchaBinarySignature-1].length; ) {
-				if (binary.substr(index + captchaWidth * line, captchaBinarySignature[indexOfCaptchaBinarySignature-1][line].length) == captchaBinarySignature[indexOfCaptchaBinarySignature-1][line]) {
-					line++;
-					if (line == captchaBinarySignature[indexOfCaptchaBinarySignature-1].length) {
-						if ((indexOfCaptchaBinarySignature-1) == 11) {
-							captcha += " - ";
-						} else if ((indexOfCaptchaBinarySignature-1) == 10) {
-							captcha += " + ";
-						} else {
-							captcha += (indexOfCaptchaBinarySignature - 1) % 10;
-						}	
-					}
-				} else {
-					break;
-				}
-			}
-		}		
-	}
+    for (var index = captchaWidth * 4; index < captchaWidth * 5 - 1; index++) {
+        for (var indexOfCaptchaBinarySignature = captchaBinarySignature.length; indexOfCaptchaBinarySignature > 0; indexOfCaptchaBinarySignature--) {
+            for (var line = 0; line < captchaBinarySignature[indexOfCaptchaBinarySignature-1].length; ) {
+                if (binary.substr(index + captchaWidth * line, captchaBinarySignature[indexOfCaptchaBinarySignature-1][line].length) == captchaBinarySignature[indexOfCaptchaBinarySignature-1][line]) {
+                    line++;
+                    if (line == captchaBinarySignature[indexOfCaptchaBinarySignature-1].length) {
+                        if ((indexOfCaptchaBinarySignature-1) == 11) {
+                            captcha += " - ";
+                        } else if ((indexOfCaptchaBinarySignature-1) == 10) {
+                            captcha += " + ";
+                        } else {
+                            captcha += (indexOfCaptchaBinarySignature - 1) % 10;
+                        }    
+                    }
+                } else {
+                    break;
+                }
+            }
+        }        
+    }
 
-	return captcha;
+    return captcha;
 }
 
 function calculateCaptcha(captcha) {
-	var result = captcha.split(" ");
+    var result = captcha.split(" ");
 
-	if (result[0] === "") {
-		result[0] = 0;
-	}
-	if (result[2] === "") {
-		result[2] = 0;
-	}
-	if (result[1] == "+") {
-		result[0] = Number(result[0]) + Number(result[2]);
-	}
-	if (result[1] == "-") {
-		result[0] = Number(result[0]) - Number(result[2]);
-	}
+    if (result[0] === "") {
+        result[0] = 0;
+    }
+    if (result[2] === "") {
+        result[2] = 0;
+    }
+    if (result[1] == "+") {
+        result[0] = Number(result[0]) + Number(result[2]);
+    }
+    if (result[1] == "-") {
+        result[0] = Number(result[0]) - Number(result[2]);
+    }
 
-	return result[0];
+    return result[0];
 }
 
 function inputCaptcha(captcha) {
-	var captchaInputTextField = document.querySelector(".link-input");
-	captchaInputTextField.value = captcha;
+    var captchaInputTextField = document.querySelector(".link-input");
+    captchaInputTextField.value = captcha;
 }
 
 function noMoreSilverAward() {
-	var status = document.querySelector(".status-text > div");
-	
-	if (status !== null) {
-		var statusText = status.innerText;
-		if (statusText.indexOf('今天已经木有宝箱惹') != -1) {
-			return true;
-		}
-	}
+    var status = document.querySelector(".status-text > div");
+    
+    if (status !== null) {
+        var statusText = status.innerText;
+        if (statusText.indexOf('今天已经木有宝箱惹') != -1) {
+            return true;
+        }
+    }
 
-	return false;
+    return false;
 }
 
 function getFreeSilverAward() {
-	if (canGetFreeSilverAward()) {
+    if (canGetFreeSilverAward()) {
         clickFreeSilverAwardBox();
         getNewCaptchaImageData();
-		setTimeout(function () {
-			var binary = binarizeCaptchaImageAsString();
-			var recognized_captcha = recognizeCaptcha(binary);
-			var result = calculateCaptcha(recognized_captcha);
+        setTimeout(function () {
+            var binary = binarizeCaptchaImageAsString();
+            var recognized_captcha = recognizeCaptcha(binary);
+            var result = calculateCaptcha(recognized_captcha);
             var time = new Date().getTime();
             var url = "http://api.live.bilibili.com/FreeSilver/getAward?time_start="+(time)+"&end_time="+(time+Math.round(Math.random(1)*5000))+"&captcha=" + result;
             var request = new XMLHttpRequest();
             request.open("GET", url);
-			request.withCredentials = true;
-			request.onload = function(e) { 
-				if(this.status == 200 || this.status == 304){
-					if (this.responseText.indexOf('"code":0') !== -1) {
-						window.location.reload();
-					}
-				}
-			};
-			request.send(null);
-		}, 5000);
-	}	
+            request.withCredentials = true;
+            request.onload = function(e) { 
+                if(this.status == 200 || this.status == 304){
+                    if (this.responseText.indexOf('"code":0') !== -1) {
+                        window.location.reload();
+                    }
+                }
+            };
+            request.send(null);
+        }, 5000);
+    }    
 }
 
 var timer;
 function autoGetFreeSilverAward() {
-	timer = window.setInterval(function() {getFreeSilverAward();}, 10000);
-	var clearTimer = window.setInterval(function () {
-		if (noMoreSilverAward()) {
-			clearInterval(timer);
-		}
-	}, 1000);
+    timer = window.setInterval(function() {getFreeSilverAward();}, 10000);
+    var clearTimer = window.setInterval(function () {
+        if (noMoreSilverAward()) {
+            clearInterval(timer);
+        }
+    }, 1000);
 }
 
 autoGetFreeSilverAward();
