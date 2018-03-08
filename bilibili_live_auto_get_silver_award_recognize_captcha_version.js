@@ -590,7 +590,7 @@ function getFreeSilverAward() {
             // inputCaptcha(result);
             // clickGetFreeSilverAwardBtn();
             var time = new Date().getTime();
-            var url = "http://api.live.bilibili.com/FreeSilver/getAward?time_start="+(time)+"&end_time="+(time+Math.round(Math.random(1)*5000))+"&captcha=" + result;
+            var url = "http://api.live.bilibili.com/lottery/v1/SilverBox/getAward?time_start="+(time)+"&end_time="+(time+Math.round(Math.random(1)*5000))+"&captcha=" + result;
             var request = new XMLHttpRequest();
             request.open("GET", url);
             request.withCredentials = true;
