@@ -7,10 +7,10 @@
  * 银瓜子领完自动停止发送请求。
  *
  * @author 記憶の中で未来の風
- * @version 0.0.9
- * @date 2018.3.8
+ * @version 0.0.10
+ * @date 2018.4.3
  *
- * PS: Bilbili Live Room 4.0.0 (Build: 2018.03.06 - 15:29:44)
+ * PS: Bilbili Live Room 4.0.0 (Build: 2018.04.03 - 15:39:20)
  * 
  */
 
@@ -462,7 +462,7 @@ function getNewCaptchaImageData() {
         var content = createCanvas().getContext('2d');     
         var time = new Date().getTime();    
         var img = new Image();
-        var url = "http://api.live.bilibili.com/lottery/v1/SilverBox/getCaptcha?ts=" + time;
+        var url = "https://api.live.bilibili.com/lottery/v1/SilverBox/getCaptcha?ts=" + time;
         var request = new XMLHttpRequest();
         request.open("GET", url);
         request.withCredentials = true;
@@ -591,7 +591,7 @@ function getFreeSilverAward() {
             // clickGetFreeSilverAwardBtn();
             var time = String(new Date().getTime());
             var timeSubString = time.substring(0,time.length-3);
-            var url = "http://api.live.bilibili.com/lottery/v1/SilverBox/getAward?time_start="+(timeSubString)+"&end_time="+(timeSubString+Math.round(Math.random(1)*5000))+"&captcha=" + result;
+            var url = "https://api.live.bilibili.com/lottery/v1/SilverBox/getAward?time_start="+(timeSubString)+"&end_time="+(timeSubString+Math.round(Math.random(1)*5000))+"&captcha=" + result;
             var request = new XMLHttpRequest();
             request.open("GET", url);
             request.withCredentials = true;
